@@ -22,6 +22,12 @@ public class MainController {
         return new ModelAndView("registerPage.html");
     }
 
+    @GetMapping("/progress")
+    public ModelAndView progress() {
+        riddleService.populateWithRiddles();
+        return new ModelAndView("riddlePage.html");
+    }
+
     @GetMapping("/test/clone")
     public ResponseEntity<?> responseEntity() {
         return new ResponseEntity<>(riddleService.callTestClone(), HttpStatus.OK);

@@ -6,6 +6,7 @@ import org.utm.dp.entity.MultiChoiceAnswer;
 import org.utm.dp.entity.MultiChoiceRiddle;
 import org.utm.dp.entity.Riddle;
 import org.utm.dp.entity.TextRiddle;
+import org.utm.dp.entity.decorations.HintDecorator;
 import org.utm.dp.utils.RiddleAbstractFactory;
 import org.utm.dp.utils.RiddleFactory;
 
@@ -43,8 +44,19 @@ public class RiddleService {
                                 new MultiChoiceAnswer("zobnivyvbno", false))
                 )
         );
-
         dataSource.addRiddle(thirdRiddle);
+
+        Riddle fourthRiddle = riddleFactory.getRiddle("text", new TextRiddle.TextRiddleBuilder()
+                .setId(4L)
+                .setDescription("You shall not pass")
+                .setOrder(4)
+                .setCorrectAnswer("123456")
+        );
+
+        HintDecorator hintDecorator = new HintDecorator(fourthRiddle, "Unless you know the password");
+        hintDecorator.decorateRiddle();
+
+        dataSource.addRiddle(fourthRiddle);
     }
 
     public boolean callTestClone() {

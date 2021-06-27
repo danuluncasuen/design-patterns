@@ -8,19 +8,16 @@ $("#submit").on("click", () => {
         xhrFields: { withCredentials: true },
         success: (response, status, xhr) => {
             alert(`SUCCESS: ${response}`);
-            console.log(xhr.getResponseHeader('Set-Cookie'))
-            console.log(response)
-            console.log(xhr);
+            window.location.href="/progress"
         },
         error: err => {
-            let errorObj = err.responseJSON;
-            alert(`ERROR: "${errorObj.message}" \nTIME: ${errorObj.time}`);
+            alert(err);
         }
     });
 });
 
 const userObject = () => {
     return {
-        name: $("#username").val()
+        username: $("#username").val()
     };
 };
